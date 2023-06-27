@@ -24,17 +24,5 @@ with contacts as (
     where contact_merge_audit.vid_to_merge is null
 )
 
-select 
-    contact_id,
-    is_contact_deleted,
-    calculated_merged_vids,
-    email,
-    contact_company,
-    first_name,
-    last_name,
-    created_at,
-    job_title,
-    company_annual_revenue,
-    _fivetran_synced,
-    property_associatedcompanyid as company_id
+select *
 from contact_merge_removal
