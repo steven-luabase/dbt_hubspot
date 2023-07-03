@@ -30,7 +30,7 @@ with deals as (
     select * 
     from {{ var('deal_company') }}
 
-)
+),
 
 
 deal_fields_joined as (
