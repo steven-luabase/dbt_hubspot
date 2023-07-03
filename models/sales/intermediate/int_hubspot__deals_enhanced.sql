@@ -28,7 +28,7 @@ with deals as (
 ), companies as (
 
     select * 
-    from {{ var('deal_companie') }}
+    from {{ var('deal_company') }}
 
 )
 
