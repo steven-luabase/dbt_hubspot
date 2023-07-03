@@ -23,12 +23,12 @@ with deals as (
 ), contacts as (
 
     select * 
-    from {{ var('deal_contacts')}}
+    from {{ var('deal_contact')}}
 
 ), companies as (
 
     select * 
-    from {{ var('deal_companies') }}
+    from {{ var('deal_companie') }}
 
 )
 
