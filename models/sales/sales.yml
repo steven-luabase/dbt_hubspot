@@ -65,6 +65,10 @@ models:
         description: A timestamp representing when the deal_pipeline was created.
       - name: deal_pipeline_updated_at
         description: A timestamp representing when the deal_pipeline was updated.
+      - name: contact_id
+        description: contact id associated with the deal
+      - name: company_id
+        description: company id associated with the deal
 
   - name: hubspot__deal_stages
     description: Each record represents a stage within a deal in Hubspot
