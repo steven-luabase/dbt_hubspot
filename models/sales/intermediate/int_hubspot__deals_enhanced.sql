@@ -22,13 +22,19 @@ with deals as (
 
 ), contacts as (
 
-    select * 
+    select 
+        deal_id,
+        array_agg(contact_id) as contact_ids
     from {{ var('deal_contact')}}
+    group by deal_id
 
 ), companies as (
 
-    select * 
+    select 
+        deal_id,
+        array_agg(company_id) as company_ids
     from {{ var('deal_company') }}
+    group by deal_id
 
 ),
 
@@ -46,8 +52,10 @@ deal_fields_joined as (
         pipeline_stages.pipeline_stage_label,
         owners.email_address as owner_email_address,
         owners.full_name as owner_full_name,
-        contacts.contact_id,
-        companies.company_id
+        contacts.contact_ids[0] as primary_contact_id,
+        companies.company_ids[0] as primary_company_id,
+        contacts.contact_ids,
+        companies.company_ids
     from deals    
     left join pipelines 
         on deals.deal_pipeline_id = pipelines.deal_pipeline_id
