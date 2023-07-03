@@ -20,7 +20,20 @@ with deals as (
     select *
     from {{ var('owner') }}
 
-), deal_fields_joined as (
+), contacts as (
+
+    select * 
+    from {{ var('deal_contacts')}}
+
+), companies as (
+
+    select * 
+    from {{ var('deal_companies') }}
+
+)
+
+
+deal_fields_joined as (
 
     select 
         deals.*,
@@ -32,7 +45,9 @@ with deals as (
         pipelines.deal_pipeline_updated_at,
         pipeline_stages.pipeline_stage_label,
         owners.email_address as owner_email_address,
-        owners.full_name as owner_full_name
+        owners.full_name as owner_full_name,
+        contacts.contact_id,
+        companies.company_id
     from deals    
     left join pipelines 
         on deals.deal_pipeline_id = pipelines.deal_pipeline_id
@@ -40,6 +55,10 @@ with deals as (
         on deals.deal_pipeline_stage_id = pipeline_stages.deal_pipeline_stage_id
     left join owners 
         on deals.owner_id = owners.owner_id
+    left join contacts
+        on deals.deal_id = contacts.deal_id 
+    left join companies
+        on deals.deal_id = companies.deal_id
 )
 
 select *

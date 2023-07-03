@@ -15,6 +15,7 @@ vars:
     deal: "{{ ref('stg_hubspot__deal') }}"
     deal_stage: "{{ ref('stg_hubspot__deal_stage') }}"
     deal_company: "{{ ref('stg_hubspot__deal_company') }}"
+    deal_contact: "{{ ref('stg_hubspot__deal_contact') }}"
     deal_pipeline: "{{ ref('stg_hubspot__deal_pipeline') }}"
     deal_pipeline_stage: "{{ ref('stg_hubspot__deal_pipeline_stage') }}"
     deal_property_history: "{{ ref('stg_hubspot__deal_property_history') }}"
