@@ -41,7 +41,7 @@ with deals_enhanced as (
     left join engagement_deal_agg
         using (deal_id)
 
-), last_engaged (
+), last_engaged as (
     select 
         deal_ids[0] as deal_id,
         max(occurred_timestamp) as last_engagement_at
