@@ -41,10 +41,22 @@ with deals_enhanced as (
     left join engagement_deal_agg
         using (deal_id)
 
+), last_engaged (
+    select 
+        deal_ids[0] as deal_id,
+        max(occurred_timestamp) as last_engagement_at
+    from {{ ref('hubspot__engagements') }} 
+    where deal_ids is not null
+    and engagement_type = 'EMAIL'
+    group by deal_id
 )
 
-select *
+select 
+    engagements_joined.*,
+    last_engaged.last_engagement_at
 from engagements_joined
+left join last_engaged
+    on engagements_joined.deal_id = last_engaged.deal_id
 
 {% else %}
 
