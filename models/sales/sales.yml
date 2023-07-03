@@ -73,6 +73,8 @@ models:
         description: array of all contact ids associated with the deal
       - name: company_ids
         description: array of all company ids associated with the deal
+      - name: last_engagement_sent_at
+        description: datetime of last outgoing email engagement
 
   - name: hubspot__deal_stages
     description: Each record represents a stage within a deal in Hubspot
